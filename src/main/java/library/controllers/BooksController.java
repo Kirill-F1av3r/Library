@@ -52,4 +52,25 @@ public class BooksController {
         booksService.create(book);
         return "redirect:/books";
     }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") int id, Model model) {
+        Optional<Book> book = booksService.show(id);
+        if (book.isPresent()) {
+            model.addAttribute("book", book.get());
+            return "books/edit";
+        }
+        return "books/notValue";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@PathVariable("id") int id,
+                         @ModelAttribute("book") @Valid Book book, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "books/edit";
+        }
+
+        booksService.update(id, book);
+        return "redirect:/books";
+    }
 }

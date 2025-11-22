@@ -28,4 +28,8 @@ public class BooksService {
     public void create(Book book) {
         booksDAO.save(book.getName(), book.getAuthor(), book.getRelease_date(), book.getCount());
     }
+
+    public void update(int id, Book book) {
+        booksDAO.update(id, book.getName(), book.getAuthor(), book.getRelease_date(), book.getCount());
+    }
 }

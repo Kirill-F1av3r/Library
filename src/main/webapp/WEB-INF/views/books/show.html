@@ -12,5 +12,10 @@
 <p th:text="${'Release date - ' + book.getRelease_date()}">Date</p>
 <p th:text="${'Number of copies - ' + book.getCount()}">Count</p>
 
+<br/>
+<hr/>
+
+<a th:href="@{/books/{id}/edit(id=${book.getId()})}">Edit book</a>
+
 </body>
 </html>

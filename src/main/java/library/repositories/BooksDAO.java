@@ -31,4 +31,9 @@ public class BooksDAO {
         String sql = "INSERT INTO Book (name, author, release_date, count) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, name, author, release_date, count);
     }
+
+    public void update(int id, String name, String author, Date release_date, int count) {
+        String sql = "UPDATE Book SET name = ?, author = ?, release_date = ?, count = ? WHERE id = ?";
+        jdbcTemplate.update(sql, name, author, release_date, count, id);
+    }
 }
