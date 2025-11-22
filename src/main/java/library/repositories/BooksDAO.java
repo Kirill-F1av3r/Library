@@ -36,4 +36,9 @@ public class BooksDAO {
         String sql = "UPDATE Book SET name = ?, author = ?, release_date = ?, count = ? WHERE id = ?";
         jdbcTemplate.update(sql, name, author, release_date, count, id);
     }
+
+    public void delete(int id) {
+        String sql = "DELETE FROM Book WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }

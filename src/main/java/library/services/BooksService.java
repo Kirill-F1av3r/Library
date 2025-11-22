@@ -32,4 +32,8 @@ public class BooksService {
     public void update(int id, Book book) {
         booksDAO.update(id, book.getName(), book.getAuthor(), book.getRelease_date(), book.getCount());
     }
+
+    public void destroy(int id) {
+        booksDAO.delete(id);
+    }
 }
