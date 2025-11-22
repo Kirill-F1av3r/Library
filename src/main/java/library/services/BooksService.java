@@ -24,4 +24,8 @@ public class BooksService {
     public Optional<Book> show(int id) {
         return Optional.ofNullable(booksDAO.getBook(id));
     }
+
+    public void create(Book book) {
+        booksDAO.save(book.getName(), book.getAuthor(), book.getRelease_date(), book.getCount());
+    }
 }
