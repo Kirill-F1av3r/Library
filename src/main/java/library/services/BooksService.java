@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BooksService {
@@ -18,5 +19,9 @@ public class BooksService {
 
     public List<Book> index() {
         return booksDAO.listBooks();
+    }
+
+    public Optional<Book> show(int id) {
+        return Optional.ofNullable(booksDAO.getBook(id));
     }
 }
