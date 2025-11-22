@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Books</title>
 </head>
 <body>
-$END$
+
+<div th:each="book : ${books}">
+    <a th:text="${'Name - ' + book.getName() + ', Author - ' + book.getAuthor()}">book</a>
+</div>
+
 </body>
 </html>
