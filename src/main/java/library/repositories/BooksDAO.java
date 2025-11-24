@@ -2,43 +2,35 @@ package library.repositories;
 
 import library.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
-import java.util.List;
-
 @Repository
-public class BooksDAO {
+public class BooksDAO extends AbstractDAO<Book> {
     private final JdbcTemplate jdbcTemplate;
+
+    private static final String TABLE_NAME_SQL = "Book";
 
     @Autowired
     public BooksDAO(JdbcTemplate jdbcTemplate) {
+        super(jdbcTemplate, TABLE_NAME_SQL);
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Book> listBooks() {
-        return jdbcTemplate.query("SELECT * FROM Book", new BeanPropertyRowMapper<>(Book.class));
+    @Override
+    protected Class<Book> getEntityClass() {
+        return Book.class;
     }
 
-    public Book getBook(int id) {
-        return jdbcTemplate.query("SELECT * FROM Book WHERE id = ?", new BeanPropertyRowMapper<>(Book.class), id)
-                .stream().findAny().orElse(null);
-    }
-
-    public void save(String name, String author, Date release_date, int count) {
+    @Override
+    public void save(Book book) {
         String sql = "INSERT INTO Book (name, author, release_date, count) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, name, author, release_date, count);
+        jdbcTemplate.update(sql, book.getName(), book.getAuthor(), book.getRelease_date(), book.getCount());
     }
 
-    public void update(int id, String name, String author, Date release_date, int count) {
+    @Override
+    public void update(int id, Book book) {
         String sql = "UPDATE Book SET name = ?, author = ?, release_date = ?, count = ? WHERE id = ?";
-        jdbcTemplate.update(sql, name, author, release_date, count, id);
-    }
-
-    public void delete(int id) {
-        String sql = "DELETE FROM Book WHERE id = ?";
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, book.getName(), book.getAuthor(), book.getRelease_date(), book.getCount(), id);
     }
 }
