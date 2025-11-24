@@ -43,4 +43,9 @@ public class BooksController extends AbstractController<Book> {
         booksService.update(id, book);
         return "redirect:/books";
     }
+
+    @Override
+    protected Book createRecourse() {
+        return new Book();
+    }
 }

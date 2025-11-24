@@ -1,10 +1,7 @@
 package library.controllers;
 
-import jakarta.validation.Valid;
-import library.models.Book;
 import library.services.Service;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -38,15 +35,15 @@ public abstract class AbstractController<T> implements Controller<T> {
 
     @Override
     public String newRecourse(Model model) {
-        model.addAttribute(name_recourse, new Book());
+        model.addAttribute(name_recourse, createRecourse());
         return recourses + "/new";
     }
 
     @Override
     public String edit(@PathVariable("id") int id, Model model) {
-        Optional<T> book = service.show(id);
-        if (book.isPresent()) {
-            model.addAttribute(name_recourse, book.get());
+        Optional<T> t = service.show(id);
+        if (t.isPresent()) {
+            model.addAttribute(name_recourse, t.get());
             return recourses + "/edit";
         }
         return recourses + "/notValue";
@@ -58,4 +55,6 @@ public abstract class AbstractController<T> implements Controller<T> {
         service.destroy(id);
         return "redirect:/" + recourses;
     }
+
+    protected abstract T createRecourse();
 }
