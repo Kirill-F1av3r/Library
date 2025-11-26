@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Borrow records</title>
+</head>
+<body>
+
+<div th:each="borrow_record : ${borrow_records}">
+    <a th:href="@{/borrow_records/{id}(id = ${borrow_record.getId()})}"
+       th:text="${'Book - ' + borrow_record.getBook_id() + ', Person - ' + borrow_record.getPerson_id()}">borrow_record</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="borrow_records/new">Create new borrow record</a>
+
+</body>
+</html>

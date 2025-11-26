@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit record</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/borrow_records/{id}(id=${borrow_record.getId()})}" th:object="${borrow_record}">
+    <label for="book_id">Enter book id: </label>
+    <input type="text" th:field="*{book_id}" id="book_id"/>
+    <div style="color:red" th:if="${#fields.hasErrors('book_id')}" th:errors="*{book_id}">Book_id error</div>
+    <br/>
+    <label for="person_id">Enter person id: </label>
+    <input type="text" th:field="*{person_id}" id="person_id"/>
+    <div style="color:red" th:if="${#fields.hasErrors('person_id')}" th:errors="*{person_id}">Person_id error</div>
+    <br/>
+    <label for="borrow_date">Enter borrow date: </label>
+    <input type="date" th:field="*{borrow_date}" id="borrow_date"/>
+    <div style="color:red" th:if="${#fields.hasErrors('borrow_date')}" th:errors="*{borrow_date}">Borrow_date error</div>
+    <br/>
+    <label for="return_date">Enter return date: </label>
+    <input type="date" th:field="*{return_date}" id="return_date"/>
+    <div style="color:red" th:if="${#fields.hasErrors('return_date')}" th:errors="*{return_date}">Return date error</div>
+    <br/>
+    <input type="submit" value="Update!"/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+</head>
+<body>
+
+<p th:text="${'Id - ' + borrow_record.getId()}">Id</p>
+<p th:text="${'Book id - ' + borrow_record.getBook_id()}">Book id</p>
+<p th:text="${'Person id - ' + borrow_record.getPerson_id()}">Person id</p>
+<p th:text="${'Borrow date - ' + borrow_record.getBorrow_date()}">Borrow date</p>
+<p th:text="${'Return date - ' + borrow_record.getReturn_date()}">Return date</p>
+
+<br/>
+<hr/>
+
+<a th:href="@{/borrow_records/{id}/edit(id=${borrow_record.getId()})}">Edit borrow record</a>
+
+<br/>
+<hr/>
+
+<form th:method="DELETE" th:action="@{/borrow_records/{id}(id=${borrow_record.getId()})}">
+    <input type="submit" value="Delete!"/>
+</form>
+
+</body>
+</html>
