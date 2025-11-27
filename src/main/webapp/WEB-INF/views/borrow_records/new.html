@@ -8,21 +8,39 @@
 
 <form th:method="POST" th:action="@{/borrow_records}" th:object="${borrow_record}">
     <label for="book_id">Enter book id: </label>
-    <input type="text" th:field="*{book_id}" id="book_id"/>
+    <select name="book_id" id="book_id" required>
+        <option value="">-- Select book --</option>
+        <option th:each="book : ${books}"
+                th:value="${book.id}"
+                th:text="${book.name}"
+                th:selected="${borrow_record.book_id == book.id}">
+        </option>
+    </select>
     <div style="color:red" th:if="${#fields.hasErrors('book_id')}" th:errors="*{book_id}">Book_id error</div>
     <br/>
+
     <label for="person_id">Enter person id: </label>
-    <input type="text" th:field="*{person_id}" id="person_id"/>
+    <select name="person_id" id="person_id" required>
+        <option value="">-- Select person --</option>
+        <option th:each="person : ${people}"
+                th:value="${person.id}"
+                th:text="${person.name}"
+                th:selected="${borrow_record.person_id == person.id}">
+        </option>
+    </select>
     <div style="color:red" th:if="${#fields.hasErrors('person_id')}" th:errors="*{person_id}">Person_id error</div>
     <br/>
+
     <label for="borrow_date">Enter borrow date: </label>
     <input type="date" th:field="*{borrow_date}" id="borrow_date"/>
     <div style="color:red" th:if="${#fields.hasErrors('borrow_date')}" th:errors="*{borrow_date}">Borrow_date error</div>
     <br/>
+
     <label for="return_date">Enter return date: </label>
     <input type="date" th:field="*{return_date}" id="return_date"/>
     <div style="color:red" th:if="${#fields.hasErrors('return_date')}" th:errors="*{return_date}">Return date error</div>
     <br/>
+
     <input type="submit" value="Create!"/>
 </form>
 
