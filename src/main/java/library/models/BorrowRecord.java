@@ -1,11 +1,14 @@
 package library.models;
 
+import jakarta.validation.constraints.PastOrPresent;
+
 import java.sql.Date;
 
 public class BorrowRecord {
     private int id;
     private int book_id;
     private int person_id;
+    @PastOrPresent(message = "The borrow date may not be in the future")
     private Date borrow_date;
     private Date return_date;
 
