@@ -2,13 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Book</title>
+    <title>Borrow Record</title>
 </head>
 <body>
 
 <p th:text="${'Id - ' + borrow_record.getId()}">Id</p>
-<p th:text="${'Book id - ' + borrow_record.getBook_id()}">Book id</p>
-<p th:text="${'Person id - ' + borrow_record.getPerson_id()}">Person id</p>
+<a th:href="@{/books/{id}(id=${borrow_record.getBook_id()})}"
+   th:text="${'Book name - ' + borrow_record.getBookName()}">Book id</a>
+<br/>
+<br/>
+<a th:href="@{/people/{id}(id=${borrow_record.getPerson_id()})}"
+   th:text="${'Person name - ' + borrow_record.getPersonName()}">Person id</a>
 <p th:text="${'Borrow date - ' + borrow_record.getBorrow_date()}">Borrow date</p>
 <p th:text="${'Return date - ' + borrow_record.getReturn_date()}">Return date</p>
 

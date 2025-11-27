@@ -8,7 +8,7 @@
 
 <div th:each="borrow_record : ${borrow_records}">
     <a th:href="@{/borrow_records/{id}(id = ${borrow_record.getId()})}"
-       th:text="${'Book - ' + borrow_record.getBook_id() + ', Person - ' + borrow_record.getPerson_id()}">borrow_record</a>
+       th:text="${'Book - ' + borrow_record.getBookName() + ', Person - ' + borrow_record.getPersonName()}">borrow_record</a>
 </div>
 
 <br/>
